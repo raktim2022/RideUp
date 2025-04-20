@@ -12,6 +12,10 @@ router.post('/register', [
     body('fullname.lastname').isLength({min: 3}).withMessage('First name must be at least 3 characters')
 ], userController.register);
 
+router.post('/login',[
+    body('email').isEmail().withMessage('Email is not valid'),
+    body('password').isLength({min: 5}).withMessage('Password must be at least 5 characters')
+], userController.login);
 
 
 

@@ -61,3 +61,64 @@ Creates a new user account in the system.
   ]
 }
 ```
+
+### Login User
+**Endpoint:** `POST /users/login`
+
+**Description:**  
+Authenticates a user and returns a JWT token.
+
+**Request Body:**
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+**Validation Rules:**
+- `email`: Must be a valid email format
+- `password`: Must be at least 5 characters
+
+**Responses:**
+
+| Status Code | Description |
+|-------------|-------------|
+| 200         | Login successful |
+| 400         | Invalid credentials or validation error |
+
+**Success Response Example:**
+```json
+{
+  "token": "jwt-token",
+  "user": {
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "_id": "user-id",
+    "socketId": null
+  }
+}
+```
+
+**Error Response Example:**
+```json
+{
+  "error": "Invalid email or password"
+}
+```
+
+**Validation Error Example:**
+```json
+{
+  "errors": [
+    {
+      "msg": "Email is not valid",
+      "param": "email",
+      "location": "body"
+    }
+  ]
+}
+```
