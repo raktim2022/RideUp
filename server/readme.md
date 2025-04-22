@@ -122,3 +122,77 @@ Authenticates a user and returns a JWT token.
   ]
 }
 ```
+
+### Get User Profile
+**Endpoint:** `GET /users/profile`
+
+**Description:**  
+Retrieves the authenticated user's profile information.
+
+**Authentication:**  
+Requires a valid JWT token in the Authorization header.
+
+**Request Body:**
+None
+
+**Responses:**
+
+| Status Code | Description |
+|-------------|-------------|
+| 200         | Success |
+| 401         | Unauthorized - Invalid or missing token |
+
+**Success Response Example:**
+```json
+{
+  "user": {
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "_id": "user-id",
+    "socketId": null
+  }
+}
+```
+
+**Error Response Example:**
+```json
+{
+  "error": "Unauthorized - Please log in"
+}
+```
+
+### Logout User
+**Endpoint:** `GET /users/logout`
+
+**Description:**  
+Logs out the currently authenticated user.
+
+**Authentication:**  
+Requires a valid JWT token in the Authorization header.
+
+**Request Body:**
+None
+
+**Responses:**
+
+| Status Code | Description |
+|-------------|-------------|
+| 200         | Logout successful |
+| 401         | Unauthorized - Invalid or missing token |
+
+**Success Response Example:**
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
+**Error Response Example:**
+```json
+{
+  "error": "Unauthorized - Please log in"
+}
+```
